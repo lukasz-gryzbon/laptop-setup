@@ -113,6 +113,7 @@ echo "Setting ZSH as shell..."
 chsh -s /bin/zsh
 
 echo "source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh" >> .zshrc
+echo "plugins=(git docker docker-compose zsh-autosuggestions zsh-syntax-highlighting zsh-completions liquidprompt)" >> .zshrc
 
 # Apps
 apps=(
