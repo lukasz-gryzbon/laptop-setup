@@ -11,7 +11,7 @@ xcode-select --install
 # Install if we don't have it
 if test ! $(which brew); then
 echo "Installing homebrew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 sudo chown -R $(whoami) /usr/local/share/zsh /usr/local/share/zsh/site-functions
@@ -41,6 +41,7 @@ brew install tree
 brew install wget
 brew install gron
 brew install jq
+brew install colima
 brew install docker
 brew install docker-compose
 brew install pyenv
@@ -80,6 +81,7 @@ brew install fzf
 brew install gradle
 brew install nvm
 brew install watch
+brew install lazydocker
 
 
 echo "Installing homebrew cask"
@@ -105,6 +107,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-completions
 git clone https://github.com/nojhan/liquidprompt.git
 
+echo "alias lzd='lazydocker'" >> ~/.zshrc
+
 echo "Setting ZSH as shell..."
 chsh -s /bin/zsh
 
@@ -113,7 +117,6 @@ echo "source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zs
 # Apps
 apps=(
 alfred
-diffmerge
 firefox
 iterm2
 jetbrains-toolbox
@@ -125,6 +128,11 @@ drawio
 slack
 google-chrome
 zoom
+microsoft-teams
+jiggler
+openvpn-connect
+tunnelblick
+docker
 )
 
 echo "installing apps with Cask..."
@@ -133,7 +141,7 @@ brew install --cask ${apps[@]}
 Echo "Installing SDKMan for managing anything JVM"
 curl -s "https://get.sdkman.io" | bash
 
-echo “Installing Python”
+echo "Installing Python"
 brew install python3
 
 #brew cask alfred link
@@ -147,9 +155,15 @@ killall Finder
 #echo "127.0.0.   kafka"
 #read -p "Press [Enter] key after you've done it..."
 
+echo "Install Java:"
+echo "sdk install java 21.0.2-open"
+sdk install java 21.0.2-open
+
 echo "Copy the following files manually from the old laptop:"
 echo "~/.ssh/id_rsa"
 echo "~/.ssh/id_rsa.pub"
+
+echo "Adjust the iTerm2 setup:"
+echo ""
+
 echo "Done!"
-
-
