@@ -25,11 +25,11 @@ brew install git
 
 echo "Git config"
 
-read -p "Enter full name: " fullname
-read -p "Enter your email address: " email
+#read -p "Enter full name: " fullname
+#read -p "Enter your email address: " email
 
-git config --global user.name "$fullname"
-git config --global user.email $email
+git config --global user.name "Lukasz Gryzbon"
+git config --global user.email "lgryzbon@dalet.com"
 
 echo "Installing brew git utilities..."
 brew install git-extras
@@ -82,12 +82,12 @@ brew install gradle
 brew install nvm
 brew install watch
 brew install lazydocker
+brew install zsh-syntax-highlighting
 
 
 echo "Installing homebrew cask"
 # This may be required ? brew install --cask caskroom/cask/brew-cask
 
-brew tap homebrew/cask-fonts
 brew install --cask font-fira-code font-jetbrains-mono
 
 echo "Cleaning up brew"
@@ -98,22 +98,34 @@ brew cleanup
 
 #Install Zsh & Oh My Zsh
 echo "Installing Oh My ZSH..."
-curl -L http://install.ohmyz.sh | sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "Setting up Zsh plugins..."
-cd ~/.oh-my-zsh/custom/plugins
-git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
-git clone https://github.com/zsh-users/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-completions
-git clone https://github.com/nojhan/liquidprompt.git
-
-echo "alias lzd='lazydocker'" >> ~/.zshrc
+#cd ~/.oh-my-zsh/custom/plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+git clone https://github.com/nojhan/liquidprompt.git $ZSH_CUSTOM/plugins/liquidprompt
 
 echo "Setting ZSH as shell..."
 chsh -s /bin/zsh
 
-echo "source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh" >> .zshrc
-echo "plugins=(git docker docker-compose zsh-autosuggestions zsh-syntax-highlighting zsh-completions liquidprompt)" >> .zshrc
+echo "source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh" >> ~/.zshrc
+echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+echo "plugins=(git docker docker-compose zsh-autosuggestions zsh-syntax-highlighting zsh-completions fast-syntax-highlighting zsh-autocomplete liquidprompt)" >> ~/.zshrc
+
+#Aliases
+echo "alias lzd='lazydocker'" >> ~/.zshrc
+#echo "alias colima='colima start --cpu 4 --memory 20 --disk 50'" >> ~/.zshrc
+
+#Set up iTerm2's option+arrows left&right to work as expected
+echo "# Mine" >> ~/.zshrc
+echo "bindkey -e" >> ~/.zshrc
+echo "bindkey '\e\e[C' forward-word" >> ~/.zshrc
+echo "bindkey '\e\e[D' backward-word" >> ~/.zshrc
+
+echo "set rtp+=/opt/homebrew/opt/fzf" >> ~/.vimrc
 
 # Apps
 apps=(
