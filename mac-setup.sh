@@ -25,11 +25,11 @@ brew install git
 
 echo "Git config"
 
-#read -p "Enter full name: " fullname
-#read -p "Enter your email address: " email
+read -p "Enter full name: " fullname
+read -p "Enter your email address: " email
 
-git config --global user.name "Lukasz Gryzbon"
-git config --global user.email "lgryzbon@dalet.com"
+git config --global user.name "$fullname"
+git config --global user.email $email
 
 echo "Installing brew git utilities..."
 brew install git-extras
@@ -55,6 +55,7 @@ brew install vim
 brew install openssl
 brew install coreutils
 brew install moreutils
+brew install maven
 brew install findutils
 brew install binutils
 brew install rename
@@ -82,8 +83,8 @@ brew install gradle
 brew install nvm
 brew install watch
 brew install lazydocker
+brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
-
 
 echo "Installing homebrew cask"
 # This may be required ? brew install --cask caskroom/cask/brew-cask
