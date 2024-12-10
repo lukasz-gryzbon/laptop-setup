@@ -1,3 +1,5 @@
+# Based on: https://www.bretfisher.com/shell/ and other sources
+
 echo "Installing xcode-stuff"
 xcode-select --install
 
@@ -32,9 +34,11 @@ git config --global user.name "$fullname"
 git config --global user.email $email
 
 echo "Installing brew git utilities..."
+brew install git
 brew install git-extras
 brew install legit
 brew install git-flow
+brew install git-crypt
 
 echo "Installing other brew stuff..."
 brew install tree
@@ -47,10 +51,8 @@ brew install docker-compose
 brew install pyenv
 brew install pyenv-virtualenv
 brew install remotemobprogramming/brew/mob
-brew install git-crypt
 brew install curl
 brew install wget
-brew install git
 brew install vim
 brew install openssl
 brew install coreutils
@@ -147,6 +149,7 @@ jiggler
 openvpn-connect
 tunnelblick
 docker
+cloudmounter
 )
 
 echo "installing apps with Cask..."
