@@ -1,5 +1,3 @@
-# Based on: https://www.bretfisher.com/shell/ and other sources
-
 echo "Installing xcode-stuff"
 xcode-select --install
 
@@ -150,6 +148,7 @@ openvpn-connect
 tunnelblick
 docker
 cloudmounter
+privadovpn
 )
 
 echo "installing apps with Cask..."
