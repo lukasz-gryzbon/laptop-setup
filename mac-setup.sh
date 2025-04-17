@@ -149,6 +149,7 @@ tunnelblick
 docker
 cloudmounter
 privadovpn
+balenaetcher
 )
 
 echo "installing apps with Cask..."
